@@ -1,0 +1,45 @@
+header{
+  width: 100vw;
+  height: 8vh;
+  background-color: black;
+}
+
+nav{
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+}
+nav button{
+  position: relative;
+  top: 1rem;
+  right: 1rem;
+  color: white;
+  font-size: larger;
+  background-color: transparent;
+  border: none;
+}
+nav button:focus{
+ outline: 0;
+}
+
+.popup button {
+  color: rgb(0, 0, 0);  
+  font-size: larger;
+  border: none;
+  background-color: transparent;
+}
+.popup button:focus{
+  outline: 0;
+}
+.popup{
+  position: absolute;
+  top:2rem;
+  right: 1rem;
+  margin-top: 0.5rem; 
+  padding: 1rem;
+  height: 2rem;
+  width: 4rem;
+  border: 0.08rem solid black;
+  background-color: white;
+  border-radius: 0.3rem;
+}
