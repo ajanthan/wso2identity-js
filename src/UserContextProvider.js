@@ -34,7 +34,7 @@ const reducer = (state, action) => {
 };
 
 
-const UserContextProvider = ({ ...props }) => {
+const UserContextProvider = ({ ...props }) => { 
     const initialUserContext = { isUserLoggedIn: false, user: '' };
     const [userContext, dispatch] = useReducer(reducer, initialUserContext);
     useEffect(() => {

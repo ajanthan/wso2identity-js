@@ -1,7 +1,7 @@
 import { AuthorizationServiceConfiguration } from '@openid/appauth';
 
 const Config = {
-  client_id: 'wSQlT1hkFwBc75BDWEQqkrH6hoga',
+  client_id: 'Ih_hLXePZxqfSfwxBLeqynAFLfka',
   redirect_url: 'http://localhost:3000/redirect.html',
   logout_url: 'https://identity.us.to/oidc/logout',
   epConfig: new AuthorizationServiceConfiguration({
