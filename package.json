@@ -1,7 +1,8 @@
 {
-  "name": "wso2identity-js",
+  "name": "@ajanthan/wso2identity-js",
   "version": "0.1.0",
   "private": false,
+  "repository":"git://github.com/ajanthan/wso2identity-js.git",
   "dependencies": {
     "@openid/appauth": "^1.2.7",
     "@testing-library/jest-dom": "^4.2.4",
