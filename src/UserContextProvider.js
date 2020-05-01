@@ -9,9 +9,9 @@ import {
     FetchRequestor,
     DefaultCrypto
 } from '@openid/appauth';
-import Config from './Config'
 import { Base64 } from 'js-base64';
 import UserContext from './UserContext';
+import { getConfig } from './Config'
 import './UserContextProvider.css';
 
 const reducer = (state, action) => {
@@ -26,7 +26,7 @@ const reducer = (state, action) => {
             };
         case 'logout':
             sessionStorage.clear();
-            window.location.assign(`${Config.logout_url}?id_token_hint=${state.token}&post_logout_redirect_uri=${Config.redirect_url}&state=${new DefaultCrypto().generateRandom(5)}`);
+            window.location.assign(action.payload.logout_url);
             return { ...state, isUserLoggedIn: false, user: '' };
         default:
             return state;
@@ -34,7 +34,8 @@ const reducer = (state, action) => {
 };
 
 
-const UserContextProvider = ({ ...props }) => { 
+const UserContextProvider = ({ ...props }) => {
+    const Config = getConfig(props.config);
     const initialUserContext = { isUserLoggedIn: false, user: '' };
     const [userContext, dispatch] = useReducer(reducer, initialUserContext);
     useEffect(() => {
@@ -104,7 +105,7 @@ const UserContextProvider = ({ ...props }) => {
             ...userContext, handleLogin: () => {
                 handleLogin();
             }, handleLogout: () => {
-                dispatch({ type: 'logout' });
+                dispatch({ type: 'logout', payload: { "logout_url": `${Config.logout_url}?id_token_hint=${state.token}&post_logout_redirect_uri=${Config.redirect_url}&state=${new DefaultCrypto().generateRandom(5)}` } });
             }
         }}>
             {userContext.isUserLoggedIn ? props.children : <div className="container-wrapper"> <button className='lg-btn' onClick={handleLogin} type='button'>Login here</button></div>}
