@@ -10,8 +10,8 @@ import {
     DefaultCrypto
 } from '@openid/appauth';
 import { Base64 } from 'js-base64';
-import UserContext from './UserContext';
-import { getConfig } from './Config'
+import {UserContext} from './UserContext';
+import getConfig from './Config'
 import './UserContextProvider.css';
 
 const reducer = (state, action) => {
@@ -105,11 +105,11 @@ const UserContextProvider = ({ ...props }) => {
             ...userContext, handleLogin: () => {
                 handleLogin();
             }, handleLogout: () => {
-                dispatch({ type: 'logout', payload: { "logout_url": `${Config.logout_url}?id_token_hint=${state.token}&post_logout_redirect_uri=${Config.redirect_url}&state=${new DefaultCrypto().generateRandom(5)}` } });
+                dispatch({ type: 'logout', payload: { "logout_url": `${Config.logout_url}?id_token_hint=${userContext.token}&post_logout_redirect_uri=${Config.redirect_url}&state=${new DefaultCrypto().generateRandom(5)}` } });
             }
         }}>
             {userContext.isUserLoggedIn ? props.children : <div className="container-wrapper"> <button className='lg-btn' onClick={handleLogin} type='button'>Login here</button></div>}
         </UserContext.Provider>
     );
 };
-export default UserContextProvider;
+export {UserContextProvider};
